@@ -3,7 +3,7 @@ package com.example.board.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,17 +14,15 @@ import com.example.board.service.BoardService;
 
 
 
-@RestController
+@Controller
 public class BoardController {
 	
-	private final BoardService boardService;
-	
-	BoardController(BoardService boardService){
-		this.boardService = boardService;
-	}
+	@Autowired
+	private BoardService boardService;
 	
 	// 게시글 리스트 조회
 	@GetMapping("/boardList")
+	
 	public String boardList(Model model, Board bDto) {
 		System.out.println("BoardController------boardList실행");
 		

@@ -5,33 +5,27 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.board.dto.Board;
 import com.example.board.mapper.BoardMapper;
 
 @Service
-public class BoardService {
-	// 수정
-	private final BoardMapper boardMapper;
+public class BoardService{
 	
-	BoardService(BoardMapper boardMapper){
-		this.boardMapper = boardMapper;
-	}
+	@Autowired
+	private BoardMapper boardMapper;
 	
 	// 게시글 리스트 조회
 	public Map<String, Object> getBoardList(Board bDto){
-		System.out.println("BoardService----- getBoardList 메소드 실행");
-		
-		List<Board> boardList = new ArrayList<Board>();
 		Map<String, Object> boardMap = new HashMap<String, Object>();
+		boardMap.put("boardDto", bDto);
+		List<Board> boardList = new ArrayList<Board>();
 		boardList = boardMapper.selectBoardList(boardMap);
-		System.out.println("BoardService----- selectBoardList 메소드 실행");
-		
 		boardMap.put("boardList", boardList);
-		
-		return boardMap;
-	}
 
+		return boardMap;
+		
+	}
 }

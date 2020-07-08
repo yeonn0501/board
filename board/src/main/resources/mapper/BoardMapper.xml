@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   		
 <mapper namespace="com.example.board.mapper.BoardMapper">
 
 <!-- 게시글 resultMap -->
-	<resultMap id="selectBoardResult" type="Board">
+	<resultMap id="selectBoardResult" type="com.example.board.dto.Board">
 	
     	<result property="boardCode" column="BOARD_CODE"/>
     	<result property="boardCategory" column="BOARD_CATE"/>
