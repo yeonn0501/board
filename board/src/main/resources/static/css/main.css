@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+*{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 400;
+	font-size: 14px;
+}
+
+.wrap{
+	width:100%;
+	height:1000px;
+}
+
+.content{
+	width:1200px;
+	margin:0 auto;
+}
+
+.navbar{
+	margin-top:10px;
+}
+
+.navbar-brand{
+	font-weight:700;
+}
+
+.form-control{
+	resize: none;
+}
+
+.write-form-btn{
+	margin-top:10px;
+	text-align:right;
+}

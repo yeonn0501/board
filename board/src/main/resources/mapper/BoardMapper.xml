@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  		
+<mapper namespace="com.example.board.mapper.BoardMapper">
+
+<!-- 게시글 resultMap -->
+	<resultMap id="selectBoardResult" type="Board">
+	
+    	<result property="boardCode" column="BOARD_CODE"/>
+    	<result property="boardCategory" column="BOARD_CATE"/>
+    	<result property="boardNum" column="BOARD_NUM"/>
+    	<result property="boardTitle" column="BOARD_TITLE"/>
+    	<result property="boardContent" column="BOARD_CONTENT"/>
+    	<result property="boardWriter" column="BOARD_WRITER"/>
+    	<result property="boardDate" column="BOARD_DATE"/>
+    	<result property="boardCount" column="BOARD_COUNT"/>
+    	<result property="boardCommentCount" column="BOARD_COMMENT_COUNT"/>
+
+  	</resultMap>
+  	
+  	<!-- 게시글 리스트 조회 -->
+	<select id="selectBoardList" resultMap="selectBoardResult" parameterType="map">
+		SELECT
+			BOARD_CODE,
+			BOARD_CATE,
+			BOARD_NUM,
+			BOARD_TITLE,
+			BOARD_CONTENT,
+			BOARD_WRITER,
+			BOARD_DATE,
+			BOARD_COUNT,
+			BOARD_COMMENT_COUNT
+		FROM
+			BOARD_DETAIL
+		ORDER BY
+			BOARD_DATE DESC;
+		
+	</select>
+
+</mapper>
+
+
