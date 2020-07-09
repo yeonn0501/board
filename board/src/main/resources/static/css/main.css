@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+/**
+* 작성자 김연지
+*/
+
 *{
 	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: 400;
@@ -24,11 +28,53 @@
 	font-weight:700;
 }
 
+
+
+
+
+
+/* --------------'/boardList'  table css -------------- */
+
+
+
+
+.board_table th{
+	text-align:center;	
+}
+
+.th_category, .td_date{
+	width:15%;
+}
+
+.th_title{
+	width:45%;
+}
+
+.th_writer{
+	width:10%;
+	text-align:left !important;
+}
+
+
+.board_table td{
+	text-align:left;
+}
+
+.td_date, .td_count{
+	text-align:center !important;
+}
+
+
+
+
+
+
+/* --------------'/boardWrite' form 관련 css -------------- */
 .form-control{
 	resize: none;
 }
 
-.write-form-btn{
+.write_form_btn{
 	margin-top:10px;
 	text-align:right;
 }

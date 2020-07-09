@@ -38,6 +38,31 @@
 			BOARD_DATE DESC;
 		
 	</select>
+	
+	
+	<insert id="insertBoardList" parameterType="com.example.board.dto.Board">
+		INSERT INTO
+			BOARD_DETAIL
+			(BOARD_CODE,
+			BOARD_CATE,
+			BOARD_NUM,
+			BOARD_TITLE,
+			BOARD_WRITER,
+			BOARD_COUNT,
+			BOARD_DATE,
+			BOARD_COMMENT_COUNT,
+			BOARD_CONTENT)
+		VALUES
+			(#{BOARD_CODE},
+			 #{BOARD_CATE},
+			 #{BOARD_NUM},
+			 #{BOARD_TITLE},
+			 #{BOARD_WRITER},
+			 0, 
+			 NOW(), 
+			 0, 
+			 #{BOARD_CONTENT})
+	</insert>
 
 </mapper>
 

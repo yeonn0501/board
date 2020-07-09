@@ -21,9 +21,10 @@ public class DatabaseConfiguration {
     @Bean
     public DriverManagerDataSource dataSource() throws SQLException {
         DriverManagerDataSource source = new DriverManagerDataSource();
-        source.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
-        // 자바 설정으로 쓸 때에는 url에 &을 &amp; 로 치환하면 에러나더라.        
-        source.setUrl("jdbc:log4jdbc:mariaDB://112.216.251.11:24306/VIVICLOUD");
+//        source.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
+        source.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        // 자바 설정으로 쓸 때에는 url에 &을 &amp; 로 치환하면 에러     
+        source.setUrl("jdbc:log4jdbc:mariadb://112.216.251.11:24306/VIVICLOUD");
         source.setUsername("vivicloud");
         source.setPassword("pAssWord12#");
         return source;
