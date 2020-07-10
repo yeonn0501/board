@@ -1,15 +1,17 @@
 package com.example.board.dto;
 
+import java.util.Date;
+
 public class Board {
 	private int boardCode;
 	private String boardCategory;
-	private String boardNum;
+	private int boardSeq;
 	private String boardWriter;
 	private String boardTitle;
 	private String boardContent;
 	private int boardCount;
 	private int boardCommentCount;
-	private String boardDate;
+	private Date boardDate;
 	
 	
 	public int getBoardCode() {
@@ -24,11 +26,11 @@ public class Board {
 	public void setBoardCategory(String boardCategory) {
 		this.boardCategory = boardCategory;
 	}
-	public String getBoardNum() {
-		return boardNum;
+	public int getBoardSeq() {
+		return boardSeq;
 	}
-	public void setBoardNum(String boardNum) {
-		this.boardNum = boardNum;
+	public void setBoardSeq(int boardSeq) {
+		this.boardSeq = boardSeq;
 	}
 	public String getBoardWriter() {
 		return boardWriter;
@@ -60,10 +62,10 @@ public class Board {
 	public void setBoardCommentCount(int boardCommentCount) {
 		this.boardCommentCount = boardCommentCount;
 	}
-	public String getBoardDate() {
+	public Date getBoardDate() {
 		return boardDate;
 	}
-	public void setBoardDate(String boardDate) {
+	public void setBoardDate(Date boardDate) {
 		this.boardDate = boardDate;
 	}
 	@Override
@@ -73,8 +75,8 @@ public class Board {
 		builder.append(boardCode);
 		builder.append(", boardCategory=");
 		builder.append(boardCategory);
-		builder.append(", boardNum=");
-		builder.append(boardNum);
+		builder.append(", boardSeq=");
+		builder.append(boardSeq);
 		builder.append(", boardWriter=");
 		builder.append(boardWriter);
 		builder.append(", boardTitle=");

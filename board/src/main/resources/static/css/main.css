@@ -7,22 +7,38 @@
 *{
 	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: 400;
-	font-size: 14px;
+	
+}
+
+table a:link {
+	color:#333 !important;
+	text-decoration: none;
+}
+table a:visited { 
+	color:#333 !important;
+	text-decoration: none;
+}
+table a:hover { 
+	color:#333 !important;
+	text-decoration: underline;
+}
+
+
+body{
+	overflow-y:scroll;
 }
 
 .wrap{
 	width:100%;
-	height:1000px;
+	display:flex;
+	padding:10px;
 }
 
 .content{
-	width:1200px;
+	width:1000px;
 	margin:0 auto;
 }
 
-.navbar{
-	margin-top:10px;
-}
 
 .navbar-brand{
 	font-weight:700;
@@ -33,10 +49,13 @@
 
 
 
-/* --------------'/boardList'  table css -------------- */
+/* --------------'/boardList' css -------------- */
 
 
-
+.center{
+	display:block;
+	padding-bottom:20px;
+}
 
 .board_table th{
 	text-align:center;	
@@ -68,13 +87,158 @@
 
 
 
+.pagination_wrap{
+	margin-top:10px;
+	width:fit-content;
+	margin:0 auto;
+	
+}
+.pagination{
+	flex-direction:row;
+	justify-content:center;
+}
 
-/* --------------'/boardWrite' form 관련 css -------------- */
+/* --------------'/boardWrite' css -------------- */
 .form-control{
 	resize: none;
 }
 
-.write_form_btn{
+.board_write_btn{
 	margin-top:10px;
 	text-align:right;
+}
+
+
+
+
+
+/* --------------'/boardWrite' css -------------- */
+
+.board_top_btn{
+	width:100%;
+}
+
+.top_left_btn{
+	float:left;			
+}
+
+.top_right_btn{
+	float:right;
+}
+
+
+
+
+
+
+.article{
+	width:100%;
+	border: 1px solid #eee;	
+	padding:30px;
+	float:right;
+	margin-top:10px;
+}
+
+.board_category{
+	color: #FE2E64;
+	margin-bottom:5px;
+}
+
+.board_title{
+	margin-bottom:10px;
+	font-size:26px;
+	font-weight:500;
+}
+
+.info_profile{
+	width:35px;
+	float:left;
+	margin-right:10px;
+}
+.info_text{
+	margin-left:10px;
+	
+}
+
+.board_write_info{
+	font-size:13px;
+	margin-bottom:15px;
+}
+
+.board_writer_id{
+	font-weight:400;
+	margin-left:5px;
+}
+
+.board_date{
+	font-weight:300;
+	color:#A4A4A4;
+	float:left;
+}
+
+.board_count{
+	margin-left:10px;
+	font-weight:300;
+	color:#A4A4A4;
+}
+.board_count_number{
+	margin-left:5px;
+	color:#A4A4A4;
+}
+
+
+
+
+
+
+.article_wrap{
+	width:100%;
+	padding-top:15px;
+	border-top: 1px solid #eee;	
+
+}
+
+.article_content{
+	font-size:16px;
+}
+.article_bottom{
+	border-bottom: 1px solid #eee;
+	margin-top:60px;
+	padding-bottom:10px;
+}
+
+
+
+
+
+
+.comment_header{
+	padding-top:18px;
+	font-size:18px;
+	font-weight:500;
+}
+.comment_count_number{
+	font-weight:500;
+	margin-left:5px;
+}
+.comment_form{
+	margin-top:14px;
+	padding:15px;
+	overflow:hidden;
+	font-size:14px;
+}
+
+
+
+
+
+.board_bottom_btn{
+	float:right;
+	width:100%;
+	margin-top:10px;
+	margin-bottom:150px;
+}
+
+.bottom_right_btn{
+	float:right;
 }

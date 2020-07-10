@@ -44,32 +44,53 @@
 				<!-- /.container-fluid -->
 			</nav>
 			<!-- 게시글 리스트 테이블 -->
-			<table class="table table-hover board_table">
-				<tr>
-					<th class="th_number"></th>
-					<th class="th_category"></th>
-					<th class="th_title">제목</th>
-					<th class="th_writer">작성자</th>
-					<th class="th_date">작성일</th>
-					<th class="th_count">조회수</th>
-				</tr>
-				<th:block th:each="bl:${boardList}">
+			<div class="center">
+				<table class="table table-hover board_table">
 					<tr>
-						<td th:text="${bl.boardNum}" class="td_number"></td>
-						<td th:text="${bl.boardCategory}" class="td_category"></td>
-						<td><a th:text="${bl.boardTitle}" href="#" class="a_board_title"></a></td>
-						<td th:text="${bl.boardWriter}"><a></a></td>
-						<td th:text="${bl.boardDate}" class="td_date"><a></a></td>
-						<td th:text="${bl.boardCount}" class="td_count"><a></a></td>
+						<th class="th_seq"></th>
+						<th class="th_category"></th>
+						<th class="th_title">제목</th>
+						<th class="th_writer">작성자</th>
+						<th class="th_date">작성일</th>
+						<th class="th_count">조회수</th>
 					</tr>
-				</th:block>
-			</table>
-			<button type="button" class="btn btn-default"
-				onclick="location.href='/boardWrite'" style="float: right;">
-				<span class="glyphicon glyphicon-pencil" aria-hidden="true"
-					style="margin-right: 5px;"></span>글쓰기
-			</button>
-
+					<th:block th:each="bl:${boardList}">
+						<tr>
+							<td th:text="${bl.boardSeq}" class="td_seq"></td>
+							<td th:text="${bl.boardCategory}" class="td_category"></td>
+							<td><a th:text="${bl.boardTitle}" th:href="@{/boardView(boardSeq=${bl.boardSeq})}"
+								class="a_board_title"></a></td>
+							<td th:text="${bl.boardWriter}"><a></a></td>
+							<td
+								th:text="${#dates.format(bl.boardDate, 'yyyy.MM.dd HH:mm:ss')}"
+								class="td_date"><a></a></td>
+							<td th:text="${bl.boardCount}" class="td_count"><a></a></td>
+						</tr>
+					</th:block>
+				</table>
+				<button type="button" class="btn"
+					onclick="location.href='/boardWrite'" style="float: right;">
+					<span class="glyphicon glyphicon-pencil" aria-hidden="true"
+						style="margin-right: 5px;"></span>글쓰기
+				</button>
+			</div>
+			<div class="pagination_wrap">
+				<nav>
+					<ul class="pagination">
+						<li><a href="#" aria-label="Previous"> <span
+								aria-hidden="true">&laquo;</span>
+						</a></li>
+						<li><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li><a href="#" aria-label="Next"> <span
+								aria-hidden="true">&raquo;</span>
+						</a></li>
+					</ul>
+				</nav>
+			</div>
 		</div>
 	</div>
 	<script

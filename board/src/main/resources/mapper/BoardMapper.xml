@@ -10,7 +10,7 @@
 	
     	<result property="boardCode" column="BOARD_CODE"/>
     	<result property="boardCategory" column="BOARD_CATE"/>
-    	<result property="boardNum" column="BOARD_NUM"/>
+    	<result property="boardSeq" column="BOARD_SEQ"/>
     	<result property="boardTitle" column="BOARD_TITLE"/>
     	<result property="boardContent" column="BOARD_CONTENT"/>
     	<result property="boardWriter" column="BOARD_WRITER"/>
@@ -25,7 +25,7 @@
 		SELECT
 			BOARD_CODE,
 			BOARD_CATE,
-			BOARD_NUM,
+			BOARD_SEQ,
 			BOARD_TITLE,
 			BOARD_CONTENT,
 			BOARD_WRITER,
@@ -40,12 +40,32 @@
 	</select>
 	
 	
+	<!-- 게시글 상세 보기 조회 -->
+	<select id="boardDetailView" resultMap="selectBoardResult" parameterType="com.example.board.dto.Board">
+		SELECT
+			BOARD_TITLE,
+			BOARD_SEQ,
+			BOARD_WRITER,
+			BOARD_DATE,
+			BOARD_CONTENT,
+			BOARD_COUNT,
+			BOARD_COMMENT_COUNT
+		FROM
+			BOARD_DETAIL
+		WHERE
+			BOARD_SEQ = #{boardSeq};
+	</select>
+	
+	
+	
+	
+	<!-- 게시글 생성 -->
 	<insert id="insertBoardList" parameterType="com.example.board.dto.Board">
 		INSERT INTO
 			BOARD_DETAIL
 			(BOARD_CODE,
 			BOARD_CATE,
-			BOARD_NUM,
+			BOARD_SEQ,
 			BOARD_TITLE,
 			BOARD_WRITER,
 			BOARD_COUNT,
@@ -53,15 +73,15 @@
 			BOARD_COMMENT_COUNT,
 			BOARD_CONTENT)
 		VALUES
-			(#{BOARD_CODE},
-			 #{BOARD_CATE},
-			 #{BOARD_NUM},
-			 #{BOARD_TITLE},
-			 #{BOARD_WRITER},
+			(#{boardCode},
+			 #{boardCategory},
+			 #{boardSeq},
+			 #{boardTitle},
+			 #{boardWriter},
 			 0, 
 			 NOW(), 
 			 0, 
-			 #{BOARD_CONTENT})
+			 #{boardContent})
 	</insert>
 
 </mapper>

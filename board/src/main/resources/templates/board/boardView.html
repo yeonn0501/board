@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,9 +34,8 @@
 					<div class="collapse navbar-collapse"
 						id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
-							<li class="active"><a href="/">HOME <span
-									class="sr-only">(current)</span></a></li>
-							<li><a href="/boardList">게시판</a></li>
+							<li><a href="/">HOME <span class="sr-only">(current)</span></a></li>
+							<li class="active"><a href="/boardList">게시판</a></li>
 						</ul>
 					</div>
 					<!-- /.navbar-collapse -->
@@ -44,14 +43,75 @@
 				<!-- /.container-fluid -->
 			</nav>
 			<!-- 게시글 상세 정보  -->
-			<div class="article">
-				<div class="article-wrap">
-					
+			<th:block>
+				<div th:each="bv:${boardView}">
+					<div class="board_top_btn">
+						<div class="top_left_btn">
+							<button type="button" class="btn btn-default board_update_btn">수정</button>
+							<button type="button" class="btn btn-default board_delete_btn">삭제</button>
+						</div>
+						<div class="top_right_btn">
+							<button type="button" class="btn btn-default">
+								<span class="glyphicon glyphicon-menu-down" aria-hidden="true"
+									style="margin-right: 5px;"></span>이전글
+							</button>
+							<button type="button" class="btn btn-default">
+								<span class="glyphicon glyphicon-menu-up" aria-hidden="true"
+									style="margin-right: 5px;"></span>다음글
+							</button>
+							<button type="button" class="btn btn-default"
+								onclick="location.href='/boardList'">목록</button>
+						</div>
+					</div>
+					<div class="article">
+						<div class="board_category">공지사항</div>
+						<div th:text="${bv.boardTitle}" class="board_title"></div>
+						<div class="board_write_info">
+							<img src="img/profile.png" class="info_profile" />
+							<div class="info_text">
+								<div th:text="${bv.boardWriter}" class="board_writer_id"></div>
+								<div th:text="${bv.boardDate}" class="board_date"></div>
+								<span class="board_count">조회</span><span
+									th:text="${bv.boardCount}" class="board_count_number"></span>
+							</div>
+						</div>
+
+						<div class="article_wrap">
+							<div th:text="${bv.boardContent}" class="article_content">
+							</div>
+							<div class="article_bottom">
+								<span class="glyphicon glyphicon-comment" aria-hidden="true"
+									style="margin-right: 5px;"></span> 댓글<span
+									th:text="${bv.boardCommentCount}" class="comment_count_number"></span>
+							</div>
+						</div>
+						<div class="comment_header">댓글</div>
+						<textarea class="form-control comment_form"
+							onkeyup="adjustHeight();" placeholder="댓글을 남겨보세요">
+						</textarea>
+					</div>
+				</div>
+			</th:block>
+			<div class="board_bottom_btn">
+				<button type="button" onclick="location.href='/boardWrite'"
+					class="btn view_write_btn">
+					<span class="glyphicon glyphicon-pencil" aria-hidden="true"
+						style="margin-right: 5px;"></span>글쓰기
+				</button>
+				<button type="button" class="btn btn-default board_update_btn">수정</button>
+				<button type="button" class="btn btn-default board_delete_btn">삭제</button>
+				<div class="bottom_right_btn">
+					<button type="button" class="btn btn-default"
+						onclick="location.href='/boardList'">목록</button>
+					<button type="button" class="btn btn-default" onclick="goTop()">top</button>
 				</div>
 			</div>
-			
-			
 		</div>
 	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script src="js/board.js"></script>
 </body>
 </html>
