@@ -5,18 +5,6 @@
 $(function(){
 		
 	
-	// boardList.html 에서 list_size 선택시 버튼 text 변경
-	$('.list_size_li').on('click',function(){
-		var listSize = $(this).text();
-		$('.list_size_span').text(listSize);
-		
-		var listSizeValue = $(this).val();
-		console.log(listSizeValue);
-		
-		
-	})
-	
-	
 	
 	// 글 insert form 및 update form에서 카테고리 선택
 	$('.form_category_list').on('click', function(){
@@ -68,8 +56,12 @@ $(function(){
 
 	})
 
-	
-
+	// 페이지네이션 현재 페이지에 해당되는 li태그에 active클래스 추가
+	$('.pagination').find('a').on('click',function(){
+		var currentPage = $(this).text();
+		console.log(currentPage);
+		$(this).parent('li').addClass('active');
+	})
 
 	
 	// 게시글 '삭제' 버튼 클릭시 boardSeq 값 전달

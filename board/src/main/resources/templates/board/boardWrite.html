@@ -56,9 +56,8 @@
 						<ul class="dropdown-menu" role="menu"
 							aria-labelledby="dropdownMenu1">
 							<th:block th:each="ct:${category}">
-								<li class="form_category_list" role="presentation"
-									th:text="${ct.boardCategory}" th:value=${ct.boardCode}><a
-									role="menuitem" tabindex="-1" href="#"></a></li>
+								<li class="form_category_list" role="presentation">
+								<a role="menuitem" tabindex="-1" href="#" th:text="${ct.boardCategory}" th:value=${ct.boardCode}></a></li>
 							</th:block>
 						</ul>
 					</div>

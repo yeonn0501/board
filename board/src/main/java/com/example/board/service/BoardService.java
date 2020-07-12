@@ -24,9 +24,15 @@ public class BoardService {
 	
 	// 게시글 리스트 Select
 	public Map<String, Object> selectBoardList(int currentPage, int viewSize) {	
+		// 페이징 로직
+		
+		// 리스트사이즈 (10,15,20,30개씩)
 		int listSize = viewSize;
+		// 시작 페이지 숫자(맨 왼쪽)
 		int startPageNum = 1;
+		// 끝 페이지 숫자(맨 오른쪽)
 		int endPageNum = 10;
+		
 		
 		if(listSize == 10 && currentPage > (listSize / 2)) {
 			startPageNum = currentPage - ((endPageNum / 2) - 1);
@@ -61,7 +67,8 @@ public class BoardService {
 		boardMapper.selectBoardList(boardMap);
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("listCount", listCount);
+		int listCount1 = (int) listCount;
+		resultMap.put("listCount", listCount1);
 		resultMap.put("boardList", boardMapper.selectBoardList(boardMap));
 		resultMap.put("currentPage", currentPage);
 		resultMap.put("lastPage", lastPage);

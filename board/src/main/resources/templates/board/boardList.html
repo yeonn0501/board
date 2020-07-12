@@ -8,6 +8,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
 	rel="stylesheet">
+
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/main.css" rel="stylesheet">
 <title>boardList</title>
@@ -15,6 +16,7 @@
 
 </head>
 <body>
+
 	<div class="wrap">
 		<div class="content">
 			<nav class="navbar navbar-inverse">
@@ -43,31 +45,31 @@
 				</div>
 				<!-- /.container-fluid -->
 			</nav>
+			<!-- 카테고리 드롭다운 -->
 			<div class="list_top_left">
-				<div class="dropdown">
-					<button class="btn btn-default dropdown-toggle" type="button"
-						id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+				<div class="dropdown" style="float:left;">
+					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
 						<span class="category_type">전체</span> <span class="caret"></span>
 					</button>
 					<input type="text" hidden="hidden" name="boardCode" />
-					<ul class="dropdown-menu" role="menu"
-						aria-labelledby="dropdownMenu1">
-						<li class="form_category_list">전체</li>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+						<li class="form_category_list"><a>전체</a></li>
 						<th:block th:each="ct:${category}">
-							<li class="form_category_list" role="presentation"
-								th:text="${ct.boardCategory}" th:value=${ct.boardCode}><a
-								role="menuitem" tabindex="-1" href="#"></a></li>
+							<li class="form_category_list" role="presentation"  th:value=${ct.boardCode}><a role="menuitem" tabindex="-1" href="#" th:text="${ct.boardCategory}"></a></li>
 						</th:block>
 					</ul>
 				</div>
-				<span class="list_count" th:text="${listCount}"></span><span>개의
-					글</span>
+				<div class="list_count">
+					<span th:text="${listCount}"></span>
+					<span>개의 글</span>
+				</div>
 			</div>
 			<div class="dropdown listsize_dropdown">
 				<button class="btn btn-default dropdown-toggle list_size_btn"
 					type="button" id="dropdownMenu1" data-toggle="dropdown"
 					aria-expanded="true">
-					<span class="list_size_span" th:text="${viewSize}+개씩"></span> <span class="caret"></span>
+					<span class="list_size_span" th:text="${viewSize}+개씩"></span> <span
+						class="caret"></span>
 				</button>
 				<ul class="dropdown-menu list_size_ul" role="menu"
 					aria-labelledby="dropdownMenu1">
@@ -114,43 +116,29 @@
 						style="margin-right: 5px;"></span>글쓰기
 				</button>
 			</div>
-
-
-			<!-- 맨처음 -->
-			<a th:href="@{/boardList(viewSize=|${viewSize}|)}">[맨처음]</a>
-			<!-- 이전 -->
-			<a th:if="${currentPage > 1}"
-				th:href="@{/boardList(currentPage=${currentPage - 1},viewSize=|${viewSize}|)}"> [이전] </a>
-			<th:block th:each="num:${#numbers.sequence(startPageNum,endPageNum)}"
-				and th:unless="${num>lastPage}">
-				<span th:if="${currentPage == num}" th:text="${'['+ num +']'}"></span>
-				<a th:unless="${currentPage == num}" th:text="${'['+ num +']'}"
-					th:href="@{/boardList(currentPage=${num},viewSize=|${viewSize}|)}"></a>
-			</th:block>
-			<!-- and th:unless="${num>lastPage}" -->
-			<!-- 다음 -->
-			<a th:if="${currentPage < lastPage}"
-				th:href="@{/boardList(currentPage=${currentPage + 1},viewSize=|${viewSize}|)}"> [다음] </a>
-			<!-- 마지막 -->
-			<a th:href="@{/boardList(currentPage=${lastPage}, viewSize=|${viewSize}|)}"> [마지막] </a>
-
-
-
+			<!-- 페이지네이션 -->
 			<div class="pagination_wrap">
 				<nav>
 					<ul class="pagination">
-						<li><a href="@{/boardList}">처음</a></li>
-						<li><a href="#" aria-label="Previous"> <span
-								aria-hidden="true">&laquo;</span>
+						<li><a th:href="@{/boardList(viewSize=|${viewSize}|)}">처음</a></li>
+						<li><a th:if="${currentPage > 1}"
+							th:href="@{/boardList(currentPage=${currentPage - 1},viewSize=|${viewSize}|)}"
+							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 						</a></li>
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a href="#" aria-label="Next"> <span
-								aria-hidden="true">&raquo;</span>
+						<th:block
+							th:each="num:${#numbers.sequence(startPageNum,endPageNum)}" and
+							th:unless="${num>lastPage}">
+							<li><a th:if="${currentPage == num}" th:text="${num}"></a> <a
+								th:unless="${currentPage == num}" th:text="${num}"
+								th:href="@{/boardList(currentPage=${num},viewSize=${viewSize})}"></a>
+							</li>
+						</th:block>
+						<li><a th:if="${currentPage < lastPage}"
+							th:href="@{/boardList(currentPage=${currentPage + 1},viewSize=|${viewSize}|)}"
+							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 						</a></li>
+						<li><a
+							th:href="@{/boardList(currentPage=${lastPage}, viewSize=${viewSize})}">마지막</a></li>
 					</ul>
 				</nav>
 			</div>
