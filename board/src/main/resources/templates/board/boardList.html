@@ -67,7 +67,7 @@
 				<button class="btn btn-default dropdown-toggle list_size_btn"
 					type="button" id="dropdownMenu1" data-toggle="dropdown"
 					aria-expanded="true">
-					<span class="list_size_span">10개씩</span> <span class="caret"></span>
+					<span class="list_size_span" th:text="${viewSize}+개씩"></span> <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu list_size_ul" role="menu"
 					aria-labelledby="dropdownMenu1">
@@ -117,7 +117,7 @@
 
 
 			<!-- 맨처음 -->
-			<a th:href="@{/boardList}">[맨처음]</a>
+			<a th:href="@{/boardList(viewSize=|${viewSize}|)}">[맨처음]</a>
 			<!-- 이전 -->
 			<a th:if="${currentPage > 1}"
 				th:href="@{/boardList(currentPage=${currentPage - 1},viewSize=|${viewSize}|)}"> [이전] </a>
@@ -132,7 +132,7 @@
 			<a th:if="${currentPage < lastPage}"
 				th:href="@{/boardList(currentPage=${currentPage + 1},viewSize=|${viewSize}|)}"> [다음] </a>
 			<!-- 마지막 -->
-			<a th:href="@{/boardList(currentPage=${lastPage})}"> [마지막] </a>
+			<a th:href="@{/boardList(currentPage=${lastPage}, viewSize=|${viewSize}|)}"> [마지막] </a>
 
 
 
