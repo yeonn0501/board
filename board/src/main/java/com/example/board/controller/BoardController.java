@@ -33,20 +33,26 @@ public class BoardController {
 	
 	// 게시글 리스트 Select
 	@GetMapping("/boardList")
-	public String boardList(@RequestParam(value="currentPage", required=false, defaultValue="1")int currentPage, Model model) {
+	public String boardList(
+			@RequestParam(value="currentPage", required=false, defaultValue="1")int currentPage, 
+			Model model,
+			@RequestParam(value="viewSize", required=false, defaultValue="10")int viewSize
+							) {
 		// System.out.println("BoardController------boardList실행");
 		
 		//페이징 작업을 위한 map 객체 생성 (ex : 쿼리문 Limit 시작번호와 끝번호 등 을 담기위해)
-		Map<String, Object> boardMap = boardService.selectBoardList(currentPage);
+		Map<String, Object> boardMap = boardService.selectBoardList(currentPage,viewSize);
 		List<Board> result = boardService.selectCategory();
 		// System.out.println(result+"---------------게시판 카테고리 조회 결과값");
-		
+		System.out.println(viewSize+"---------------페이징 데이터 개수");
+			
 		model.addAttribute("boardList", boardMap.get("boardList"));
 		model.addAttribute("listCount", boardMap.get("listCount"));
 		model.addAttribute("currentPage", boardMap.get("currentPage"));
 		model.addAttribute("lastPage", boardMap.get("lastPage"));
 		model.addAttribute("startPageNum", boardMap.get("startPageNum"));
 		model.addAttribute("endPageNum", boardMap.get("endPageNum"));
+		model.addAttribute("viewSize", boardMap.get("viewSize"));
 		model.addAttribute("category", result);
 		return "board/boardList";
 	}

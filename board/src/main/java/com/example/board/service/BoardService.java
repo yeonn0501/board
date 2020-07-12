@@ -23,12 +23,27 @@ public class BoardService {
 	
 	
 	// 게시글 리스트 Select
-	public Map<String, Object> selectBoardList(int currentPage) {	
-		final int listSize = 10;
+	public Map<String, Object> selectBoardList(int currentPage, int viewSize) {	
+		int listSize = viewSize;
 		int startPageNum = 1;
-		int endPageNum = listSize;
+		int endPageNum = 10;
 		
-		if(currentPage > (listSize / 2)) {
+		if(listSize == 10 && currentPage > (listSize / 2)) {
+			startPageNum = currentPage - ((endPageNum / 2) - 1);
+			endPageNum += (startPageNum - 1);
+		}
+		
+		if(listSize == 15 && currentPage > (listSize / 3)) {
+			startPageNum = currentPage - ((endPageNum / 2) - 1);
+			endPageNum += (startPageNum - 1);
+		}
+		
+		if(listSize == 20 && currentPage > (listSize / 4)) {
+			startPageNum = currentPage - ((endPageNum / 2) - 1);
+			endPageNum += (startPageNum - 1);
+		}
+		
+		if(listSize == 30 && currentPage > (listSize / 6)) {
 			startPageNum = currentPage - ((endPageNum / 2) - 1);
 			endPageNum += (startPageNum - 1);
 		}
@@ -52,6 +67,8 @@ public class BoardService {
 		resultMap.put("lastPage", lastPage);
 		resultMap.put("startPageNum", startPageNum);
 		resultMap.put("endPageNum", endPageNum);
+		resultMap.put("viewSize", listSize);
+		
 		return resultMap;
 	}
 
