@@ -8,6 +8,7 @@
 <!-- 게시글 resultMap -->
 	<resultMap id="selectBoardResult" type="Board">
 	
+    	<result property="listCount" column="LIST_COUNT"/>
     	<result property="boardCode" column="BOARD_CODE"/>
     	<result property="boardCategory" column="BOARD_CATEGORY"/>
     	<result property="boardSeq" column="BOARD_SEQ"/>
@@ -38,10 +39,17 @@
 			BOARD_CATEGORY AS BC
 			ON
 			BD.BOARD_CODE = BC.BOARD_CODE
-			
 		ORDER BY
-			BOARD_DATE DESC;
+			BOARD_SEQ DESC
+		LIMIT #{startRow},#{listSize};
 		
+	</select>
+	
+	<select id="selectListCount" resultType="int">
+		SELECT
+			COUNT(1) AS LIST_COUNT
+		FROM
+			BOARD_DETAIL;
 	</select>
 	
 	

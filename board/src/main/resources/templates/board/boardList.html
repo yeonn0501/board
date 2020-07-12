@@ -43,7 +43,26 @@
 				</div>
 				<!-- /.container-fluid -->
 			</nav>
-			
+			<div class="list_top_left">
+				<div class="dropdown">
+					<button class="btn btn-default dropdown-toggle" type="button"
+						id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+						<span class="category_type">전체</span> <span class="caret"></span>
+					</button>
+					<input type="text" hidden="hidden" name="boardCode" />
+					<ul class="dropdown-menu" role="menu"
+						aria-labelledby="dropdownMenu1">
+						<li class="form_category_list">전체</li>
+						<th:block th:each="ct:${category}">
+							<li class="form_category_list" role="presentation"
+								th:text="${ct.boardCategory}" th:value=${ct.boardCode}><a
+								role="menuitem" tabindex="-1" href="#"></a></li>
+						</th:block>
+					</ul>
+				</div>
+				<span class="list_count" th:text="${listCount}"></span><span>개의
+					글</span>
+			</div>
 			<div class="dropdown listsize_dropdown">
 				<button class="btn btn-default dropdown-toggle list_size_btn"
 					type="button" id="dropdownMenu1" data-toggle="dropdown"
@@ -52,14 +71,14 @@
 				</button>
 				<ul class="dropdown-menu list_size_ul" role="menu"
 					aria-labelledby="dropdownMenu1">
-					<li role="presentation" class="list_size_li" value="10"><a role="menuitem" tabindex="-1"
-						href="#">10개씩</a></li>
-					<li role="presentation" class="list_size_li" value="15"><a role="menuitem" tabindex="-1"
-						href="#">15개씩</a></li>
-					<li role="presentation" class="list_size_li" value="20"><a role="menuitem" tabindex="-1"
-						href="#">20개씩</a></li>
-					<li role="presentation" class="list_size_li" value="30"><a role="menuitem" tabindex="-1"
-						href="#">30개씩</a></li>
+					<li role="presentation" class="list_size_li" value="10"><a
+						role="menuitem" tabindex="-1" href="#">10개씩</a></li>
+					<li role="presentation" class="list_size_li" value="15"><a
+						role="menuitem" tabindex="-1" href="#">15개씩</a></li>
+					<li role="presentation" class="list_size_li" value="20"><a
+						role="menuitem" tabindex="-1" href="#">20개씩</a></li>
+					<li role="presentation" class="list_size_li" value="30"><a
+						role="menuitem" tabindex="-1" href="#">30개씩</a></li>
 				</ul>
 			</div>
 
@@ -95,9 +114,32 @@
 						style="margin-right: 5px;"></span>글쓰기
 				</button>
 			</div>
+
+
+			<!-- 맨처음 -->
+			<a th:href="@{/boardList}">[맨처음]</a>
+			<!-- 이전 -->
+			<a th:if="${currentPage > 1}"
+				th:href="@{/boardList(currentPage=${currentPage - 1})}"> [이전] </a>
+			<th:block th:each="num:${#numbers.sequence(startPageNum,endPageNum)}"
+				and th:unless="${num>lastPage}">
+				<span th:if="${currentPage == num}" th:text="${'['+ num +']'}"></span>
+				<a th:unless="${currentPage == num}" th:text="${'['+ num +']'}"
+					th:href="@{/boardList(currentPage=${num})}"></a>
+			</th:block>
+			<!-- and th:unless="${num>lastPage}" -->
+			<!-- 다음 -->
+			<a th:if="${currentPage < lastPage}"
+				th:href="@{/boardList(currentPage=${currentPage + 1})}"> [다음] </a>
+			<!-- 마지막 -->
+			<a th:href="@{/boardList(currentPage=${lastPage})}"> [마지막] </a>
+
+
+
 			<div class="pagination_wrap">
 				<nav>
 					<ul class="pagination">
+						<li><a href="@{/boardList}">처음</a></li>
 						<li><a href="#" aria-label="Previous"> <span
 								aria-hidden="true">&laquo;</span>
 						</a></li>

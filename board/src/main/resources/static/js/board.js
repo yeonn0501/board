@@ -8,8 +8,12 @@ $(function(){
 	// boardList.html 에서 list_size 선택시 버튼 text 변경
 	$('.list_size_li').on('click',function(){
 		var listSize = $(this).text();
-		console.log(listSize);
 		$('.list_size_span').text(listSize);
+		
+		var listSizeValue = $(this).val();
+		console.log(listSizeValue);
+		
+		
 	})
 	
 	

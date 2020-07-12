@@ -24,6 +24,7 @@ public class BoardController {
 	// Constructor (생성자 메서드 통한) 의존성 주입 
 	private final BoardService boardService;
 	
+	
 	public BoardController(BoardService boardService) {
 		this.boardService = boardService;
 	}
@@ -32,13 +33,21 @@ public class BoardController {
 	
 	// 게시글 리스트 Select
 	@GetMapping("/boardList")
-	public String boardList(Model model) {
+	public String boardList(@RequestParam(value="currentPage", required=false, defaultValue="1")int currentPage, Model model) {
 		// System.out.println("BoardController------boardList실행");
 		
 		//페이징 작업을 위한 map 객체 생성 (ex : 쿼리문 Limit 시작번호와 끝번호 등 을 담기위해)
-		Map<String, Object> boardMap = new HashMap<String, Object>();
-		boardMap = boardService.getBoardList(boardMap);
+		Map<String, Object> boardMap = boardService.selectBoardList(currentPage);
+		List<Board> result = boardService.selectCategory();
+		// System.out.println(result+"---------------게시판 카테고리 조회 결과값");
+		
 		model.addAttribute("boardList", boardMap.get("boardList"));
+		model.addAttribute("listCount", boardMap.get("listCount"));
+		model.addAttribute("currentPage", boardMap.get("currentPage"));
+		model.addAttribute("lastPage", boardMap.get("lastPage"));
+		model.addAttribute("startPageNum", boardMap.get("startPageNum"));
+		model.addAttribute("endPageNum", boardMap.get("endPageNum"));
+		model.addAttribute("category", result);
 		return "board/boardList";
 	}
 	

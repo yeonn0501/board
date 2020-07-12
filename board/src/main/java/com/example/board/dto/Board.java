@@ -3,6 +3,8 @@ package com.example.board.dto;
 import java.util.Date;
 
 public class Board {
+
+	private int listCount;
 	private int boardCode;
 	private String boardCategory;
 	private int boardSeq;
@@ -14,6 +16,14 @@ public class Board {
 	private Date boardDate;
 	
 	
+	
+
+	public int getListCount() {
+		return listCount;
+	}
+	public void setListCount(int listCount) {
+		this.listCount = listCount;
+	}
 	public int getBoardCode() {
 		return boardCode;
 	}

@@ -58,7 +58,10 @@ body{
 	display:block;
 	padding-bottom:20px;
 }
-
+.list_top_left{
+	float:left;
+	margin-top:10px;
+}
 .listsize_dropdown{
 	float:right;
 	margin-bottom:10px;
@@ -72,7 +75,7 @@ body{
 }
 
 .th_title{
-	width:45%;
+	width:40%;
 }
 
 .th_writer{

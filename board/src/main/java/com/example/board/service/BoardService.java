@@ -23,12 +23,36 @@ public class BoardService {
 	
 	
 	// 게시글 리스트 Select
-	public Map<String, Object> getBoardList(Map<String, Object> boardMap) {	
+	public Map<String, Object> selectBoardList(int currentPage) {	
+		final int listSize = 10;
+		int startPageNum = 1;
+		int endPageNum = listSize;
 		
-		List<Board> boardList = boardMapper.selectBoardList(boardMap);
-		boardMap.put("boardList", boardList);
+		if(currentPage > (listSize / 2)) {
+			startPageNum = currentPage - ((endPageNum / 2) - 1);
+			endPageNum += (startPageNum - 1);
+		}
+		
+		Map<String, Object> boardMap = new HashMap<String, Object>();
 
-		return boardMap;
+		int startRow = (currentPage - 1) * listSize;
+		
+		boardMap.put("startRow", startRow);
+		boardMap.put("listSize", listSize);
+		
+		double listCount = boardMapper.selectListCount();
+		
+		int lastPage = (int) Math.ceil((listCount / listSize));
+		boardMapper.selectBoardList(boardMap);
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("listCount", listCount);
+		resultMap.put("boardList", boardMapper.selectBoardList(boardMap));
+		resultMap.put("currentPage", currentPage);
+		resultMap.put("lastPage", lastPage);
+		resultMap.put("startPageNum", startPageNum);
+		resultMap.put("endPageNum", endPageNum);
+		return resultMap;
 	}
 
 	
