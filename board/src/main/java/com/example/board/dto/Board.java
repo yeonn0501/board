@@ -68,6 +68,7 @@ public class Board {
 	public void setBoardDate(Date boardDate) {
 		this.boardDate = boardDate;
 	}
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

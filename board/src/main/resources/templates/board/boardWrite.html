@@ -9,7 +9,7 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
 	rel="stylesheet">
 <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/main.css" rel="stylesheet">
 <title>boardWrite</title>
@@ -44,7 +44,25 @@
 				<!-- /.container-fluid -->
 			</nav>
 			<!-- 게시글 입력 폼 -->
-			<form class="form" id="write_form">
+			<form class="form" id="write_form" name="insertForm">
+				<div class="form-group">
+					<label for="InputCategory">카테고리</label>
+					<div class="dropdown">
+						<button class="btn btn-default dropdown-toggle" type="button"
+							id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+							<span class="category_type">카테고리</span> <span class="caret"></span>
+						</button>
+						<input type="text" hidden="hidden" name="boardCode" />
+						<ul class="dropdown-menu" role="menu"
+							aria-labelledby="dropdownMenu1">
+							<th:block th:each="ct:${category}">
+								<li class="form_category_list" role="presentation"
+									th:text="${ct.boardCategory}" th:value=${ct.boardCode}><a
+									role="menuitem" tabindex="-1" href="#"></a></li>
+							</th:block>
+						</ul>
+					</div>
+				</div>
 				<div class="form-group">
 					<label for="exampleInputName2">작성자</label> <input type="text"
 						class="form-control" id="exampleInputName2" name="boardWriter">
@@ -56,8 +74,9 @@
 				<textarea class="form-control" rows="20" name="boardContent"></textarea>
 			</form>
 			<div class="board_write_btn">
-				<input type="button" class="btn btn-default form_cancel_btn" style="float: left;" value="이전 화면">
-				<input type="button" class="btn btn-success form_submit_btn" value="등록">
+				<input type="button" class="btn btn-default form_cancel_btn"
+					style="float: left;" value="이전 화면"> <input type="button"
+					class="btn btn-success form_submit_btn" value="등록">
 			</div>
 		</div>
 	</div>

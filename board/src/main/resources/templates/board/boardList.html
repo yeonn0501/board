@@ -43,6 +43,26 @@
 				</div>
 				<!-- /.container-fluid -->
 			</nav>
+			
+			<div class="dropdown listsize_dropdown">
+				<button class="btn btn-default dropdown-toggle list_size_btn"
+					type="button" id="dropdownMenu1" data-toggle="dropdown"
+					aria-expanded="true">
+					<span class="list_size_span">10개씩</span> <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu list_size_ul" role="menu"
+					aria-labelledby="dropdownMenu1">
+					<li role="presentation" class="list_size_li" value="10"><a role="menuitem" tabindex="-1"
+						href="#">10개씩</a></li>
+					<li role="presentation" class="list_size_li" value="15"><a role="menuitem" tabindex="-1"
+						href="#">15개씩</a></li>
+					<li role="presentation" class="list_size_li" value="20"><a role="menuitem" tabindex="-1"
+						href="#">20개씩</a></li>
+					<li role="presentation" class="list_size_li" value="30"><a role="menuitem" tabindex="-1"
+						href="#">30개씩</a></li>
+				</ul>
+			</div>
+
 			<!-- 게시글 리스트 테이블 -->
 			<div class="center">
 				<table class="table table-hover board_table">
@@ -58,7 +78,8 @@
 						<tr>
 							<td th:text="${bl.boardSeq}" class="td_seq"></td>
 							<td th:text="${bl.boardCategory}" class="td_category"></td>
-							<td><a th:text="${bl.boardTitle}" th:href="@{/boardView(boardSeq=${bl.boardSeq})}"
+							<td><a th:text="${bl.boardTitle}"
+								th:href="@{/boardView(boardSeq=${bl.boardSeq})}"
 								class="a_board_title"></a></td>
 							<td th:text="${bl.boardWriter}"><a></a></td>
 							<td

@@ -44,7 +44,7 @@
 			</nav>
 			<!-- 게시글 상세 정보  -->
 			<th:block>
-				<div th:each="bv:${boardView}">
+				<div>
 					<div class="board_top_btn">
 						<div class="top_left_btn">
 							<button type="button" class="btn btn-default board_update_btn">수정</button>
@@ -64,31 +64,30 @@
 						</div>
 					</div>
 					<div class="article">
-						<div class="board_category">공지사항</div>
-						<div th:text="${bv.boardTitle}" class="board_title"></div>
+						<div th:text="${boardView.boardCategory}" class="board_category"></div>
+						<input hidden="hidden" name="boardSeq" th:value="${boardView.boardSeq}"/>
+						<div th:text="${boardView.boardTitle}" class="board_title"></div>
 						<div class="board_write_info">
 							<img src="img/profile.png" class="info_profile" />
 							<div class="info_text">
-								<div th:text="${bv.boardWriter}" class="board_writer_id"></div>
-								<div th:text="${bv.boardDate}" class="board_date"></div>
+								<div th:text="${boardView.boardWriter}" class="board_writer_id"></div>
+								<div th:text="${boardView.boardDate}" class="board_date"></div>
 								<span class="board_count">조회</span><span
-									th:text="${bv.boardCount}" class="board_count_number"></span>
+									th:text="${boardView.boardCount}" class="board_count_number"></span>
 							</div>
 						</div>
 
 						<div class="article_wrap">
-							<div th:text="${bv.boardContent}" class="article_content">
+							<div th:text="${boardView.boardContent}" class="article_content">
 							</div>
 							<div class="article_bottom">
 								<span class="glyphicon glyphicon-comment" aria-hidden="true"
 									style="margin-right: 5px;"></span> 댓글<span
-									th:text="${bv.boardCommentCount}" class="comment_count_number"></span>
+									th:text="${boardView.boardCommentCount}" class="comment_count_number"></span>
 							</div>
 						</div>
 						<div class="comment_header">댓글</div>
-						<textarea class="form-control comment_form"
-							onkeyup="adjustHeight();" placeholder="댓글을 남겨보세요">
-						</textarea>
+						<textarea class="form-control comment_form" onkeyup="adjustHeight();" placeholder="댓글을 남겨보세요"></textarea>
 					</div>
 				</div>
 			</th:block>

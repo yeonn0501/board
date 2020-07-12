@@ -49,6 +49,8 @@ body{
 
 
 
+
+
 /* --------------'/boardList' css -------------- */
 
 
@@ -57,6 +59,10 @@ body{
 	padding-bottom:20px;
 }
 
+.listsize_dropdown{
+	float:right;
+	margin-bottom:10px;
+}
 .board_table th{
 	text-align:center;	
 }
@@ -98,21 +104,15 @@ body{
 	justify-content:center;
 }
 
-/* --------------'/boardWrite' css -------------- */
-.form-control{
-	resize: none;
-}
-
-.board_write_btn{
-	margin-top:10px;
-	text-align:right;
-}
 
 
 
 
 
-/* --------------'/boardWrite' css -------------- */
+
+/* --------------'/boardView' css -------------- */
+
+/* 상단 버튼 영역 */
 
 .board_top_btn{
 	width:100%;
@@ -127,9 +127,7 @@ body{
 }
 
 
-
-
-
+/* 본문 헤더 영역 */
 
 .article{
 	width:100%;
@@ -188,8 +186,7 @@ body{
 
 
 
-
-
+/* 본문 영역 */
 
 .article_wrap{
 	width:100%;
@@ -209,8 +206,7 @@ body{
 
 
 
-
-
+/* 댓글 영역 */
 
 .comment_header{
 	padding-top:18px;
@@ -230,7 +226,7 @@ body{
 
 
 
-
+/* 하단 버튼 영역 */
 
 .board_bottom_btn{
 	float:right;
@@ -242,3 +238,26 @@ body{
 .bottom_right_btn{
 	float:right;
 }
+
+
+
+
+
+
+
+
+
+/* --------------'/boardWrite' css -------------- */
+.form-control{
+	resize: none;
+}
+
+.board_write_btn{
+	margin-top:10px;
+	text-align:right;
+}
+
+
+
+
+
